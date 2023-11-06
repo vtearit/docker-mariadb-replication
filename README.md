@@ -1,4 +1,4 @@
-# docker-mariadb-replication
+# Docker MariaDb master-slave replication
 
 ## Run
 
@@ -21,7 +21,8 @@ GRANT REPLICATION SLAVE ON *.* TO 'vuduc'@'%' IDENTIFIED BY 'magento';
 
 #### Access slave mariadb and run
 
-> 'db' master host
+> 'db' is master host
+
 > 'magento' is root password
 
 ```bash
