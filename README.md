@@ -3,7 +3,7 @@
 ## Run
 
 To run this examples you will need to start containers with "docker-compose" 
-and after starting setup replication. See commands inside ./build.sh. 
+and after starting setup replication.
 
 #### Create 2 mariadb containers
 
