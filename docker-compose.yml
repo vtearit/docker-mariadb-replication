@@ -1,0 +1,33 @@
+version: "3"
+services:
+
+  db:
+    image: mariadb:10.4
+    container_name: "mariadb_master"
+    ports:
+      - "3306:3306"
+    env_file: env/db.env
+    volumes:
+      - ./replication/master/conf:/etc/mysql/conf.d/
+      - dbdata:/var/lib/mysql
+
+  db_slave:
+    image: mariadb:10.4
+    container_name: "mariadb_slave"
+    command:
+      --max_allowed_packet=64M
+      --optimizer_use_condition_selectivity=1
+      --optimizer_switch="rowid_filter=off"
+    ports:
+      - "4406:3306"
+    depends_on:
+      - db
+    env_file: env/db_slave.env
+    volumes:
+      - ./replication/slave/conf:/etc/mysql/conf.d/
+      - dbslavedata:/var/lib/mysql
+
+volumes:
+  dbdata:
+  dbslavedata:
+  
